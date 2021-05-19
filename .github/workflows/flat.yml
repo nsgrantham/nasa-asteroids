@@ -25,4 +25,3 @@ jobs:
         with:
           http_url: https://api.nasa.gov/neo/rest/v1/feed?api_key=DEMO_KEY
           downloaded_filename: nasa-asteroids.json
-          postprocess: postprocess.js
