@@ -23,5 +23,5 @@ jobs:
       - name: Fetch data 
         uses: githubocto/flat@v2
         with:
-          http_url: https://api.nasa.gov/neo/rest/v1/feed?api_key=DEMO_KEY
+          http_url: https://api.nasa.gov/neo/rest/v1/feed?api_key=DEMO_KEY&detailed=true
           downloaded_filename: nasa-asteroids.json
