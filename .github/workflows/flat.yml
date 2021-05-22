@@ -1,27 +1,25 @@
 name: Asteroids
-
 on:
   push:
     paths:
-      - .github/workflows/flat.yml # Only run a new workflow every time this file (flat.yaml) file changes
-  workflow_dispatch: # Required even though this is currently empty
+      - .github/workflows/flat.yml
+      - postprocess.js
+  workflow_dispatch: null
   schedule:
-    - cron: '0 * * * *' # Run this workflow every hour
-
+    - cron: 0 * * * *
 jobs:
   scheduled:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo
         uses: actions/checkout@v2
-      # This step installs Deno, which is a new Javascript runtime that improves on Node. We'll use it for postprocessing later
       - name: Setup deno
         uses: denoland/setup-deno@main
         with:
           deno-version: v1.x
-      # The third step is a Flat Action step. We fetch the data in the http_url and save it as downloaded_filename
-      - name: Fetch data 
+      - name: Fetch data
         uses: githubocto/flat@v2
         with:
           http_url: https://api.nasa.gov/neo/rest/v1/feed?api_key=DEMO_KEY&detailed=true
           downloaded_filename: nasa-asteroids.json
+          postprocess: postprocess.js
