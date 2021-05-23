@@ -37,8 +37,8 @@ const orbitCondition = {
 
 const makeAsteroidRecord = asteroid => (
   {
-    id: asteroid.id,
     name: asteroid.name,
+    id: asteroid.id,
     diameter_min_m: roundHundredth(asteroid.estimated_diameter.meters.estimated_diameter_min),
     diameter_max_m: roundHundredth(asteroid.estimated_diameter.meters.estimated_diameter_max),
     close_approach_datetime: replaceMonth(asteroid.close_approach_data[0].close_approach_date_full),
@@ -69,4 +69,4 @@ console.log(asteroidRecords)
 const newFilename = `${filename.split('.').slice(0, -1).join('.')}-postprocessed.csv`
 await writeCSV(newFilename, asteroidRecords)
 
-// await removeFile(`./{filename}`)
+await removeFile(filename)
