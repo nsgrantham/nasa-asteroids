@@ -33,23 +33,22 @@ const orbitCondition = {
   "7": "Very Uncertain",
   "8": "Extremely Uncertain",
   "9": "Extremely Uncertain"
-}
+} 
 
 const makeAsteroidRecord = asteroid => (
   {
-    name: asteroid.name,
-    id: asteroid.id,
-    diameter_min_m: roundHundredth(asteroid.estimated_diameter.meters.estimated_diameter_min),
-    diameter_max_m: roundHundredth(asteroid.estimated_diameter.meters.estimated_diameter_max),
     close_approach_datetime: replaceMonth(asteroid.close_approach_data[0].close_approach_date_full),
-    close_approach_velocity_kmps: roundHundredth(asteroid.close_approach_data[0].relative_velocity.kilometers_per_second),
-    close_approach_distance_ld: roundHundredth(asteroid.close_approach_data[0].miss_distance.lunar),
-    close_approach_orbiting_body: asteroid.close_approach_data[0].orbiting_body,
+    name: asteroid.name,
+    min_diameter_m: roundHundredth(asteroid.estimated_diameter.meters.estimated_diameter_min),
+    max_diameter_m: roundHundredth(asteroid.estimated_diameter.meters.estimated_diameter_max),
+    relative_velocity_kmps: roundHundredth(asteroid.close_approach_data[0].relative_velocity.kilometers_per_second),
+    miss_distance_lunar: roundHundredth(asteroid.close_approach_data[0].miss_distance.lunar),
+    orbiting_body: asteroid.close_approach_data[0].orbiting_body,
     orbit_condition: orbitCondition[asteroid.orbital_data.orbit_uncertainty],
-    orbit_first_observation_date: asteroid.orbital_data.first_observation_date,
-    orbit_last_observation_date: asteroid.orbital_data.last_observation_date,
     orbit_determination_datetime: asteroid.orbital_data.orbit_determination_date,
-    orbit_observations_used: asteroid.orbital_data.observations_used,  
+    first_observation_date: asteroid.orbital_data.first_observation_date,
+    last_observation_date: asteroid.orbital_data.last_observation_date,
+    observations_used: asteroid.orbital_data.observations_used,  
     is_potentially_hazardous: asteroid.is_potentially_hazardous_asteroid,
     is_sentry_object: asteroid.is_sentry_object,
   }
