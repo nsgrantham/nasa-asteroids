@@ -21,30 +21,15 @@ const replaceMonth = date => (
     .replace("Dec", "12")
 )
 
-// https://www.minorplanetcenter.net/iau/info/UValue.html#Ref1
-const orbitCondition = {
-  "0": "Extremely Certain",
-  "1": "Extremely Certain",
-  "2": "Very Certain",
-  "3": "Moderately Certain",
-  "4": "Slightly Certain",
-  "5": "Slightly Uncertain",
-  "6": "Moderately Uncertain",
-  "7": "Very Uncertain",
-  "8": "Extremely Uncertain",
-  "9": "Extremely Uncertain"
-} 
-
 const makeAsteroidRecord = asteroid => (
   {
+    asteroid_name: asteroid.name,
     close_approach_datetime: replaceMonth(asteroid.close_approach_data[0].close_approach_date_full),
-    name: asteroid.name,
     min_diameter_m: roundHundredth(asteroid.estimated_diameter.meters.estimated_diameter_min),
     max_diameter_m: roundHundredth(asteroid.estimated_diameter.meters.estimated_diameter_max),
     relative_velocity_kmps: roundHundredth(asteroid.close_approach_data[0].relative_velocity.kilometers_per_second),
     miss_distance_lunar: roundHundredth(asteroid.close_approach_data[0].miss_distance.lunar),
     orbiting_body: asteroid.close_approach_data[0].orbiting_body,
-    //orbit_condition: orbitCondition[asteroid.orbital_data.orbit_uncertainty],
     orbit_uncertainty: asteroid.orbital_data.orbit_uncertainty,
     orbit_determination_datetime: asteroid.orbital_data.orbit_determination_date,
     first_observation_date: asteroid.orbital_data.first_observation_date,
