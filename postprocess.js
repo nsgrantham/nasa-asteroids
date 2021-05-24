@@ -3,7 +3,7 @@ import { readJSON, writeJSON, writeCSV, removeFile } from 'https://deno.land/x/f
 const filename = Deno.args[0]
 const json = await readJSON(filename)
 
-await writeJSON(filename, json)
+await writeJSON(filename, json, { spaces: 2 })
 
 const roundHundredth = x => +parseFloat(x).toFixed(2)
 
