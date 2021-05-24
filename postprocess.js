@@ -65,4 +65,4 @@ console.log(asteroidRecords)
 const newFilename = `${filename.split('.').slice(0, -1).join('.')}-postprocessed.csv`
 await writeCSV(newFilename, asteroidRecords)
 
-await removeFile(filename)
+//await removeFile(filename)
