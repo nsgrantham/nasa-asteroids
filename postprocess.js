@@ -1,9 +1,7 @@
-import { readJSON, writeJSON, writeCSV, removeFile } from 'https://deno.land/x/flat@0.0.10/mod.ts' 
+import { readJSON, writeCSV, removeFile } from 'https://deno.land/x/flat@0.0.10/mod.ts'
 
 const filename = Deno.args[0]
 const json = await readJSON(filename)
-
-await writeJSON(filename, json, { spaces: 2 })
 
 const roundHundredth = x => +parseFloat(x).toFixed(2)
 
@@ -62,7 +60,7 @@ asteroidRecords.sort(
 
 console.log(asteroidRecords)
 
-const newFilename = `${filename.split('.').slice(0, -1).join('.')}-postprocessed.csv`
+const newFilename = `./${filename.split('.').slice(0, -1).join('.')}-postprocessed.csv`
 await writeCSV(newFilename, asteroidRecords)
 
-//await removeFile(filename)
+await removeFile(filename)
